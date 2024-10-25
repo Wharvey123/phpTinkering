@@ -1,0 +1,24 @@
+{
+    "name": "jordi/phptinkering",
+    "description": "Exercici PHPtinkering",
+    "type": "project",
+    "require": {
+        "vlucas/phpdotenv": "^5.6"
+    },
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "App\\": "App/",
+            "Core\\": "Core/"
+        },
+        "files" : [
+            "Core/helpers.php"
+        ]
+    },
+    "authors" : [
+        {
+            "name": "Jordi Vega",
+            "email": "jordivega@iesebre.com"
+        }
+    ]
+}
