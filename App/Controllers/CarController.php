@@ -2,92 +2,110 @@
 
 namespace App\Controllers;
 
-use App\Models\Car;
+use App\Models\Car; // Changed from Film to Car
 
-class CarController
+class CarController // Changed from FilmController to CarController
 {
-    //funció index
+    //funcio index
     public function index()
     {
         //obtenim tots els cotxes
-        $cars = Car::getAll();
+        $cars = Car::getAll(); // Changed from Film to Car
 
         //pasem els cotxes a la vista
-        return view('cars/index', ['cars' => $cars]);
+        return view('cars/index', ['cars' => $cars]); // Changed from films to cars
     }
 
-    //funció per anar a la vista create
+    public function show($id)
+    {
+        //si no ens passen la id fem redirect
+        if ($id === null) {
+            header('location: /');
+            exit;
+        }
+        //busquem el cotxe
+        $car = Car::find($id); // Changed from Film to Car
+        //si no ens passen cap cotxe mostrar 404
+        if (!$car) { // Changed from film to car
+            require '../../resources/views/errors/404.blade.php';
+            return;
+        }
+        //retornem la vista i li passem el cotxe indicat
+        return view('cars/show', ['car' => $car]); // Changed from film to car
+    }
+
+    //funcio per anar a la vista create
     public function create()
     {
-        return view('cars/create');
+        return view('cars/create'); // Changed from films to cars
     }
 
-    //funció per guardar les dades i tornar a la vista principal
+    //funcio per guardar les dades i tornar a la vista principal
     public function store($data)
     {
-        //cridem la funció create del model
-        Car::create($data);
-        //retornem a la vista principal
-        header('location: /cars');
+        //cridem funcio create del model
+        Car::create($data); // Changed from Film to Car
+        //retornar a la vista principal
+        header('location: /');
         exit;
     }
 
-    //funció per a la vista edit
+    //funcio per a la vista edit
     public function edit($id)
     {
         //si no ens passen la id fem redirect
         if ($id === null) {
-            header('location: /cars');
+            header('location: /');
             exit;
         }
 
         //busquem el cotxe
-        $car = Car::find($id);
+        $car = Car::find($id); // Changed from Film to Car
 
-        //si no ens passen cap cotxe, mostrar 404
-        if (!$car) {
+        //si no ens passen cap cotxe mostrar 404
+        if (!$car) { // Changed from film to car
             require '../../resources/views/errors/404.blade.php';
             return;
         }
 
         //retornem la vista i li passem el cotxe indicat
-        return view('cars/edit', ['car' => $car]);
+        return view('cars/edit', ['car' => $car]); // Changed from film to car
     }
 
-    //funció update per modificar el cotxe a la base de dades
+    //funcio update per a modificar el cotxe a la base de dades
     public function update($id, $data)
     {
         //modifiquem
-        Car::update($id, $data);
+        Car::update($id, $data); // Changed from Film to Car
 
-        //retornem a la pàgina principal
-        header('location: /cars');
+        //retonem a la pàgina principal
+        header('location: /');
         exit;
     }
 
-    //funció per anar a la vista delete
+    //funcio per anar a la vista delete
     public function delete($id)
     {
         //si no ens passen la id fem redirect
         if ($id === null) {
-            header('location: /cars');
+            header('location: /');
             exit;
         }
 
         //busquem el cotxe
-        $car = Car::find($id);
-
+        $car = Car::find($id); // Changed from Film to Car
         //retornem la vista en el cotxe
-        return view('cars/delete', ['car' => $car]);
+        return view('cars/delete', ['car' => $car]); // Changed from film to car
+
     }
 
-    //funció per eliminar el cotxe de la base de dades
+    //funcio per eliminar el cotxe de la base de dades
     public function destroy($id)
     {
-        //utilitzem la funció delete del model
-        Car::delete($id);
+        //utilizem la funcio delete del model
+        Car::delete($id); // Changed from Film to Car
 
-        //retornem a la vista principal
-        header('location: /cars');
+        //retornar a la vista
+        header('location: /');
     }
 }

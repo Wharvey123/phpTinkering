@@ -4,11 +4,11 @@ namespace App\Models;
 
 use Core\App;
 
-class Car
+class Car // Changed from Film to Car
 {
-    protected static $table = 'cars'; // Nom de la taula
+    protected static $table = 'cars'; // Changed from films to cars
 
-    // Funció per a obtenir tots els cotxes
+    //funcio per a que torne tots els cotxes
     public static function getAll()
     {
         $db = App::get('database');
@@ -17,47 +17,48 @@ class Car
         return $statement->fetchAll();
     }
 
-    // Funció per a buscar un cotxe per ID
+    //funcio per a buscar un cotxe
     public static function find($id)
     {
         $db = App::get('database')->getConnection();
         $statement = $db->prepare('SELECT * FROM ' . self::$table . ' WHERE id = :id');
         $statement->execute(array('id' => $id));
-        return $statement->fetch(\PDO::FETCH_OBJ);
+        return $statement->fetch();
     }
 
-    // Funció create per afegir un nou cotxe
+    //funcio create
     public static function create($data)
     {
         $db = App::get('database')->getConnection();
-        $statement = $db->prepare('INSERT INTO '. static::$table . "(marca, model, year, preu) VALUES (:marca, :model, :year, :preu)");
-        $statement->bindValue(':marca', $data['marca']);
-        $statement->bindValue(':model', $data['model']);
-        $statement->bindValue(':year', $data['year']);
-        $statement->bindValue(':preu', $data['preu']);
+        $statement = $db->prepare('INSERT INTO ' . static::$table . " (marca, model, any_de_fabricacio, preu, descripcio) VALUES (:marca, :model, :any_de_fabricacio, :preu, :descripcio)"); // Updated fields
+        $statement->bindValue(':marca', $data['marca']); // Changed from name to marca
+        $statement->bindValue(':model', $data['model']); // Changed from director to model
+        $statement->bindValue(':any_de_fabricacio', $data['any_de_fabricacio']); // Changed from year to any_de_fabricacio
+        $statement->bindValue(':preu', $data['preu']); // Added preu
+        $statement->bindValue(':descripcio', $data['descripcio']); // Changed from description to descripcio
         $statement->execute();
     }
 
-    // Funció update per actualitzar la informació d'un cotxe
+    //funcio update
     public static function update($id, $data)
     {
         $db = App::get('database')->getConnection();
-        $statement = $db->prepare("UPDATE ". static::$table . " SET marca = :marca, model = :model, year = :year, preu = :preu WHERE id = :id");
+        $statement = $db->prepare("UPDATE " . static::$table . " SET marca = :marca, model = :model, any_de_fabricacio = :any_de_fabricacio, preu = :preu, descripcio = :descripcio WHERE id = :id"); // Updated fields
         $statement->bindValue(':id', $id);
-        $statement->bindValue(':marca', $data['marca']);
-        $statement->bindValue(':model', $data['model']);
-        $statement->bindValue(':year', $data['year']);
-        $statement->bindValue(':preu', $data['preu']);
+        $statement->bindValue(':marca', $data['marca']); // Changed from name to marca
+        $statement->bindValue(':model', $data['model']); // Changed from director to model
+        $statement->bindValue(':any_de_fabricacio', $data['any_de_fabricacio']); // Changed from year to any_de_fabricacio
+        $statement->bindValue(':preu', $data['preu']); // Added preu
+        $statement->bindValue(':descripcio', $data['descripcio']); // Changed from description to descripcio
         $statement->execute();
     }
 
-    // Funció delete per eliminar un cotxe
+    //funcio delete
     public static function delete($id)
     {
         $db = App::get('database')->getConnection();
-        $statement = $db->prepare('DELETE FROM '. static::$table . ' WHERE id = :id');
+        $statement = $db->prepare('DELETE FROM ' . static::$table . ' WHERE id = :id');
         $statement->bindValue(':id', $id);
         $statement->execute();
     }
-
 }

@@ -15,7 +15,6 @@
             font-family: 'Roboto', sans-serif; /* Font moderna per al text */
         }
 
-        /* Estils per al bloc de títol */
         .title-block {
             background-color: #ffffff; /* Fons blanc */
             color: #000000; /* Text negre */
@@ -28,7 +27,6 @@
             margin: 0 auto; /* Centrat a la pantalla */
         }
 
-        /* Glow effect for title block */
         .title-block:hover {
             box-shadow: 0 0 30px rgba(255, 255, 255, 1); /* Glow blanc */
         }
@@ -43,7 +41,6 @@
             font-size: 1.75rem; /* Mida per al subtítol */
         }
 
-        /* Estils per als botons */
         .button {
             width: 80px; /* Ample del botó per fer-ho quadrat */
             height: 80px; /* Alt del botó per fer-ho quadrat */
@@ -61,7 +58,6 @@
             transform: scale(1.05); /* Lleuger efecte de creixement */
         }
 
-        /* Estils per a les marques de brillantor */
         .glow {
             position: absolute;
             width: 150px; /* Ample de la marca */
@@ -75,7 +71,6 @@
             z-index: -1; /* Darrere de la resta del contingut */
         }
 
-        /* Estils per a la responsive */
         @media (max-width: 640px) {
             h1 {
                 font-size: 3rem; /* Mida per a mòbil */
@@ -94,22 +89,24 @@
         }
     </style>
 </head>
-<body class="relative flex items-center justify-center min-h-screen">
-<!-- Contingut principal -->
-<div class="title-block relative z-20">
-    <h1 class="mb-4">Cinema i Automòbils</h1>
-    <h2 class="mb-4">Descobreix el món del cinema i dels cotxes!<br>Fes clic als botons!</h2>
-    <!-- Botons per a la navegació -->
-    <div class="space-x-4 flex justify-center flex-wrap">
-        <a href="/films" class="button">
-            <i class="fas fa-film fa-2xl text-white"></i> <!-- Icon size increased -->
-        </a>
-        <a href="/cars" class="button">
-            <i class="fas fa-car fa-2xl text-white"></i> <!-- Icon size increased -->
-        </a>
-    </div>
-</div>
+<body class="flex flex-col h-screen">
+<?php require "../resources/views/layout/header.blade.php"; ?>
 
+<main class="flex-grow flex items-center justify-center">
+    <div class="title-block relative z-20">
+        <h1 class="mb-4">Cinema i Automòbils</h1>
+        <h2 class="mb-4">Descobreix el món del cinema i dels cotxes!<br>Fes clic als botons!</h2>
+        <div class="space-x-4 flex justify-center flex-wrap">
+            <a href="/films" class="button">
+                <i class="fas fa-film fa-2xl text-white"></i>
+            </a>
+            <a href="/cars" class="button">
+                <i class="fas fa-car fa-2xl text-white"></i>
+            </a>
+        </div>
+    </div>
+</main>
+<?php require "../resources/views/layout/footer.blade.php"; ?>
 <script>
     const glowArray = []; // Array per guardar les marques de brillantor
     const maxGlowCount = 20; // Nombre màxim de marques que poden estar visibles alhora

@@ -15,113 +15,54 @@
             0% { opacity: 0; transform: scale(0.95); }
             100% { opacity: 1; transform: scale(1); }
         }
-        /* Estil del fons i text */
         body {
-            background-color: #111; /* Fons negre */
-            color: #fff; /* Text blanc */
-            overflow-x: hidden; /* Evitar el desplaçament horitzontal */
+            background-color: #111;
+            color: #fff;
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
         }
-        .container {
-            background-color: #ffffff; /* Fons blanc */
-            color: #000000; /* Text negre */
-            position: relative;
-            padding: 1rem; /* Afegeix padding per evitar el desplaçament horitzontal */
-        }
-        /* Estil del títol */
-        .title {
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5); /* Ombratge al títol */
-        }
-        /* Estils per a la taula */
         .table-header {
-            background-color: darkred; /* Fons vermell fosc */
-            color: white; /* Text blanc */
+            background-color: darkred;
+            color: white;
         }
         .table-row {
-            transition: background-color 0.3s ease; /* Transició suau */
+            transition: background-color 0.3s ease;
         }
         .table-row:hover {
-            background-color: lightgray; /* Canvi de color de fons a gris clar */
-            color: black; /* Opcional: canvia el color del text a negre */
+            background-color: lightgray;
+            color: black;
         }
         .glow-button {
-            background-color: darkred; /* Fons dark red */
-            color: #fff; /* Text blanc */
+            background-color: darkred;
+            color: #fff;
             transition: box-shadow 0.3s ease;
         }
         .glow-button:hover {
-            box-shadow: 0 0 8px 2px white; /* Efecte glow blanc */
+            box-shadow: 0 0 8px 2px white;
         }
-        /* Estil del glow */
-        .glow {
-            position: absolute;
-            width: 150px;
-            height: 150px;
-            background-color: rgba(255, 0, 0, 0.3); /* Color vermell difuminat */
-            pointer-events: none; /* Evita interferir amb el ratolí */
-            opacity: 0; /* Comença invisible */
-            transition: opacity 2s ease;
-            border-radius: 50%;
-            filter: blur(30px);
-            z-index: -1;
-        }
-        /* Posició del botó a la dreta amb més marge */
-        .top-right {
-            position: absolute;
-            top: 20px; /* Més espai des de dalt */
-            right: 30px; /* Més marge des de la dreta */
-        }
-        /* Botó d'afegir nova pel·lícula alineat amb el títol */
-        .top-left {
-            margin-top: 20px; /* Ajustat per estar a sota del títol */
-            left: 0;
-            position: relative;
-        }
-        .table-row td {
-            font-weight: bold;
-        }
-        /* Estils responsius */
-        @media (max-width: 640px) {
-            .top-right {
-                right: 10px; /* Ajusta el marge en mòbil */
-                top: 10px; /* Ajusta la posició en mòbil */
-            }
-            .title {
-                font-size: 3rem; /* Ajusta la mida del títol en mòbil */
-            }
-            .container {
-                padding: 1rem; /* Més espai a la pàgina en mòbil */
-            }
-            .glow-button {
-                width: 100%; /* Botó ocupa tot l'ample en mòbil */
-                margin-top: 1rem; /* Espai superior per al botó */
-            }
-            .mt-12 {
-                margin-top: 1.5rem; /* Espai per la taula en mòbil */
-            }
-            .p-8 {
-                padding-left: 1rem; /* Marges iguals esquerra i dreta */
-                padding-right: 1rem; /* Marges iguals esquerra i dreta */
-            }
+        tbody td {
+            font-weight: bold; /* Make all table data cells bold */
         }
     </style>
 </head>
-<body class="p-8 flex items-center justify-center min-h-screen">
-<!-- Contenidor principal amb animació fade-in -->
-<div class="max-w-4xl w-full mx-auto container shadow-lg rounded-lg p-6 fade-in">
-    <h1 class="text-5xl font-extrabold mb-8 text-center title">Films</h1>
-    <!-- Botó per afegir una nova pel·lícula alineat amb el títol -->
+<body class="flex flex-col h-screen">
+<?php require "../resources/views/layout/header.blade.php"; ?>
+
+<div class="max-w-4xl w-full mx-auto container shadow-lg rounded-lg p-6 fade-in flex-grow mt-8">
+    <div class="flex justify-between items-center mb-8">
+        <h1 class="text-5xl font-extrabold title">Films</h1>
+        <div class="top-right">
+            <a href="/" style="font-size: 36px;" class="text-white"> <i class="fa">&#xf137;</i></a>
+        </div>
+    </div>
     <div class="top-left">
         <a href="/create" class="glow-button px-6 py-3 rounded hover:bg-black hover-animate w-full">Afegir Nova Pel·lícula</a>
     </div>
-    <!-- Botó per tornar a la pàgina principal amb icona i fons negre -->
-    <div class="top-right">
-        <a href="/" style="font-size: 36px;"> <i class="fa">&#xf137;</i></a>
-    </div>
-    <!-- Cercador per filtrar pel·lícules per any -->
     <div class="mt-4">
-        <input type="text" id="search" placeholder="Cerca per any..." class="p-2 border border-gray-300 rounded w-full" />
+        <input type="text" id="search" placeholder="Cerca per any..." class="p-2 border border-gray-300 rounded w-full text-black" />
     </div>
-    <!-- Taula de films amb estil millorat -->
     <div class="overflow-x-auto mt-12">
         <table class="min-w-full bg-white border border-gray-300 rounded-lg overflow-hidden" id="filmsTable">
             <thead>
@@ -167,6 +108,8 @@
     </div>
 </div>
 
+<?php require "../resources/views/layout/footer.blade.php"; ?>
+
 <script>
     // Filtrar per any
     const searchInput = document.getElementById('search');
@@ -178,6 +121,7 @@
             row.style.display = yearCell.includes(filter) ? '' : 'none'; // Filtra la fila
         });
     });
+
     // Ordenar la taula
     let sortDirection = true; // True per ascendent, false per descendent
     function sortTable(colIndex) {
@@ -206,28 +150,6 @@
             tbody.appendChild(row); // Re-add the row
         });
         sortDirection = !sortDirection; // Toggle the sorting direction
-    }
-    const glowArray = [];
-    const maxGlowCount = 20;
-    document.addEventListener('mousemove', (e) => {
-        const { clientX: x, clientY: y } = e;
-        createGlow(x, y);
-    });
-    function createGlow(x, y) {
-        if (glowArray.length >= maxGlowCount) {
-            const oldGlow = glowArray.shift(); // Elimina la marca més antiga
-            oldGlow.remove(); // Removeix l'element del DOM
-        }
-        const glow = document.createElement('div');
-        glow.classList.add('glow');
-        glow.style.left = `${x - 75}px`;
-        glow.style.top = `${y - 75}px`;
-        glow.style.opacity = 1; // Mostra la marca
-        document.body.appendChild(glow);
-        glowArray.push(glow);
-        setTimeout(() => {
-            glow.style.opacity = 0; // Amaga la marca gradualment
-        }, 0);
     }
 </script>
 </body>
