@@ -37,13 +37,30 @@
             font-weight: bold;
         }
         .poster {
-            width: 200px;
+            width: 200px; /* Fixed width for desktop */
             height: auto;
             object-fit: cover;
             border-radius: 8px;
             margin: 0 auto;
         }
+        .image-gallery-container {
+            padding: 1rem; /* Padding around the gallery */
+            display: flex; /* Set to flex for layout */
+            overflow-x: hidden; /* Default to hidden for larger screens */
+        }
+        .image-gallery {
+            display: flex;
+            gap: 1rem; /* Space between images */
+        }
+        /* Enable horizontal scrolling for smaller screens */
         @media (max-width: 640px) {
+            .image-gallery-container {
+                overflow-x: auto; /* Enable horizontal scrolling */
+            }
+            .poster {
+                width: 200px; /* Maintain the same width in mobile */
+                height: auto; /* Maintain aspect ratio */
+            }
             .table-cell {
                 min-width: 100px;
             }
@@ -61,7 +78,9 @@
         </div>
     </div>
     <div class="flex justify-center mb-4">
-        <img id="posterImage" src="" alt="Car Image" class="poster">
+        <div class="image-gallery-container" id="imageGalleryContainer">
+            <div class="image-gallery" id="imageGallery"></div>
+        </div>
     </div>
     <div class="overflow-x-auto mt-12">
         <table class="min-w-full bg-white border border-gray-300 rounded-lg overflow-hidden" id="carsTable">
@@ -70,7 +89,7 @@
                 <th class="py-3 px-6 text-left table-cell">Marca</th>
                 <th class="py-3 px-6 text-left table-cell">Model</th>
                 <th class="py-3 px-6 text-left table-cell">Any</th>
-                <th class="py-3 px-6 text-left table-cell">Preu</th>
+                <th class="py-3 px-6 text-left table-cell" style="width: 150px;">Preu</th> <!-- Increased width for price column -->
                 <th class="py-3 px-6 text-left table-cell">Descripció</th>
             </tr>
             </thead>
@@ -84,7 +103,7 @@
                 <td class="py-3 px-6 table-cell"><?= htmlspecialchars($car['make']) ?></td>
                 <td class="py-3 px-6 table-cell"><?= htmlspecialchars($car['model']) ?></td>
                 <td class="py-3 px-6 table-cell"><?= htmlspecialchars($car['year']) ?></td>
-                <td class="py-3 px-6 table-cell"><?= htmlspecialchars($car['price']) ?> €</td> <!-- New Price column -->
+                <td class="py-3 px-6 table-cell"><?= htmlspecialchars($car['price']) ?> €</td> <!-- Retained original font size -->
                 <td class="py-3 px-6 table-cell"><?= htmlspecialchars($car['description']) ?></td>
             </tr>
             <?php endif; ?>
@@ -98,20 +117,29 @@
 <script>
     const carMake = "<?= $car['make'] ?>";
     const carModel = "<?= $car['model'] ?>";
-    const apiKey = "e897831c";
+    const apiKey = "BZrzxWnJDomztVU6UQPQFbsjMb2btnIl9b_PpiPiWZs"; // Your Unsplash Access Key
 
-    const apiUrl = `http://www.omdbapi.com/?t=${encodeURIComponent(carMake)} ${encodeURIComponent(carModel)}&apikey=${apiKey}`;
+    const apiUrl = `https://api.unsplash.com/search/photos?query=${encodeURIComponent(carMake + ' ' + carModel)}&client_id=${apiKey}`;
 
     fetch(apiUrl)
         .then(response => response.json())
         .then(data => {
-            if (data.Response === "True") {
-                document.getElementById('posterImage').src = data.Poster;
+            const imageGallery = document.getElementById('imageGallery');
+            if (data.results && data.results.length > 0) {
+                // Limit to the first four images
+                const imagesToShow = data.results.slice(0, 4);
+                imagesToShow.forEach(image => {
+                    const imgElement = document.createElement('img');
+                    imgElement.src = image.urls.regular;
+                    imgElement.alt = "Car Image";
+                    imgElement.classList.add('poster');
+                    imageGallery.appendChild(imgElement);
+                });
             } else {
-                console.error("Poster not found:", data.Error);
+                console.error("Car images not found.");
             }
         })
-        .catch(error => console.error("Error fetching poster:", error));
+        .catch(error => console.error("Error fetching car images:", error));
 </script>
 </body>
 </html>

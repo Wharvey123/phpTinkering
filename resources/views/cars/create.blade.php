@@ -60,8 +60,8 @@
 
             <!-- Preu del cotxe -->
             <div class="mb-4">
-                <label for="price" class="block text-white font-semibold">Preu (en euros):</label>
-                <input type="number" name="price" required class="mt-1 block w-full border border-gray-300 rounded-md p-3 text-black" placeholder="Escriu el preu">
+                <label for="price" class="block text-white font-semibold">Preu:</label>
+                <input type="number" name="price" required class="mt-1 block w-full border border-gray-300 rounded-md p-3 text-black" placeholder="Escriu el preu (en euros)">
             </div>
 
             <!-- Descripció del cotxe -->

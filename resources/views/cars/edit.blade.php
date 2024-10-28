@@ -39,7 +39,7 @@
             </div>
         </div>
 
-        <form action="/cars/update" method="POST">
+        <form action="/cars/update/<?= htmlspecialchars($car['id']) ?>" method="POST">
             <input type="hidden" name="id" value="<?= htmlspecialchars($car['id']) ?>" class="mt-1 block w-full border border-gray-300 rounded-md p-2">
 
             <div class="mb-4">

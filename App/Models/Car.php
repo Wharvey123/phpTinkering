@@ -4,61 +4,67 @@ namespace App\Models;
 
 use Core\App;
 
-class Car // Changed from Film to Car
+class Car
 {
-    protected static $table = 'cars'; // Changed from films to cars
+    protected static $table = 'cars';
 
-    //funcio per a que torne tots els cotxes
+    // Function to retrieve all cars
     public static function getAll()
     {
-        $db = App::get('database');
-        $statement = $db->getConnection()->prepare('SELECT * FROM ' . self::$table);
+        $db = App::get('database')->getConnection();
+        $statement = $db->prepare('SELECT * FROM ' . self::$table);
         $statement->execute();
         return $statement->fetchAll();
     }
 
-    //funcio per a buscar un cotxe
+    // Function to find a specific car by id
     public static function find($id)
     {
         $db = App::get('database')->getConnection();
         $statement = $db->prepare('SELECT * FROM ' . self::$table . ' WHERE id = :id');
-        $statement->execute(array('id' => $id));
+        $statement->bindParam(':id', $id);
+        $statement->execute();
         return $statement->fetch();
     }
 
-    //funcio create
+    // Function to create a new car
     public static function create($data)
     {
         $db = App::get('database')->getConnection();
-        $statement = $db->prepare('INSERT INTO ' . static::$table . " (marca, model, any_de_fabricacio, preu, descripcio) VALUES (:marca, :model, :any_de_fabricacio, :preu, :descripcio)"); // Updated fields
-        $statement->bindValue(':marca', $data['marca']); // Changed from name to marca
-        $statement->bindValue(':model', $data['model']); // Changed from director to model
-        $statement->bindValue(':any_de_fabricacio', $data['any_de_fabricacio']); // Changed from year to any_de_fabricacio
-        $statement->bindValue(':preu', $data['preu']); // Added preu
-        $statement->bindValue(':descripcio', $data['descripcio']); // Changed from description to descripcio
+        $query = 'INSERT INTO ' . self::$table . ' (make, model, year, price, description) 
+                  VALUES (:make, :model, :year, :price, :description)';
+        $statement = $db->prepare($query);
+        $statement->bindParam(':make', $data['make']);
+        $statement->bindParam(':model', $data['model']);
+        $statement->bindParam(':year', $data['year']);
+        $statement->bindParam(':price', $data['price']);
+        $statement->bindParam(':description', $data['description']);
         $statement->execute();
     }
 
-    //funcio update
+    // Function to update an existing car
     public static function update($id, $data)
     {
         $db = App::get('database')->getConnection();
-        $statement = $db->prepare("UPDATE " . static::$table . " SET marca = :marca, model = :model, any_de_fabricacio = :any_de_fabricacio, preu = :preu, descripcio = :descripcio WHERE id = :id"); // Updated fields
-        $statement->bindValue(':id', $id);
-        $statement->bindValue(':marca', $data['marca']); // Changed from name to marca
-        $statement->bindValue(':model', $data['model']); // Changed from director to model
-        $statement->bindValue(':any_de_fabricacio', $data['any_de_fabricacio']); // Changed from year to any_de_fabricacio
-        $statement->bindValue(':preu', $data['preu']); // Added preu
-        $statement->bindValue(':descripcio', $data['descripcio']); // Changed from description to descripcio
+        $query = 'UPDATE ' . self::$table . ' SET 
+                  make = :make, model = :model, year = :year, price = :price, description = :description 
+                  WHERE id = :id';
+        $statement = $db->prepare($query);
+        $statement->bindParam(':id', $id);
+        $statement->bindParam(':make', $data['make']);
+        $statement->bindParam(':model', $data['model']);
+        $statement->bindParam(':year', $data['year']);
+        $statement->bindParam(':price', $data['price']);
+        $statement->bindParam(':description', $data['description']);
         $statement->execute();
     }
 
-    //funcio delete
+    // Function to delete a car by id
     public static function delete($id)
     {
         $db = App::get('database')->getConnection();
-        $statement = $db->prepare('DELETE FROM ' . static::$table . ' WHERE id = :id');
-        $statement->bindValue(':id', $id);
+        $statement = $db->prepare('DELETE FROM ' . self::$table . ' WHERE id = :id');
+        $statement->bindParam(':id', $id);
         $statement->execute();
     }
 }

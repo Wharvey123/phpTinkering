@@ -60,7 +60,7 @@
         <a href="/cars/create" class="glow-button px-6 py-3 rounded hover:bg-black hover-animate w-full">Afegir Nou Cotxe</a>
     </div>
     <div class="mt-4">
-        <input type="text" id="search" placeholder="Cerca per any..." class="p-2 border border-gray-300 rounded w-full text-black" />
+        <input type="text" id="search" placeholder="Cerca per any o model..." class="p-2 border border-gray-300 rounded w-full text-black" />
     </div>
     <div class="overflow-x-auto mt-12">
         <table class="min-w-full bg-white border border-gray-300 rounded-lg overflow-hidden" id="carsTable">
@@ -68,10 +68,9 @@
             <tr class="table-header text-sm uppercase leading-normal">
                 <th class="py-3 px-6 text-left cursor-pointer" onclick="sortTable(0)">ID &#x21C5;</th>
                 <th class="py-3 px-6 text-left cursor-pointer" onclick="sortTable(1)">Marca &#x21C5;</th> <!-- Marca is clickable -->
-                <th class="py-3 px-6 text-left">Model</th> <!-- Model is not clickable -->
+                <th class="py-3 px-6 text-left cursor-pointer" onclick="sortTable(2)">Model &#x21C5;</th> <!-- Model is now clickable -->
                 <th class="py-3 px-6 text-left cursor-pointer" onclick="sortTable(3)">Any &#x21C5;</th>
                 <th class="py-3 px-6 text-left cursor-pointer" onclick="sortTable(4)">Preu &#x21C5;</th>
-                <th class="py-3 px-6 text-left cursor-pointer" onclick="sortTable(5)">Descripció &#x21C5;</th>
                 <th class="py-3 px-6 text-center">Accions</th>
             </tr>
             </thead>
@@ -92,7 +91,6 @@
                 <td class="py-3 px-6"><?= htmlspecialchars($car['model']) ?></td> <!-- Model -->
                 <td class="py-3 px-6"><?= htmlspecialchars($car['year']) ?></td>
                 <td class="py-3 px-6"><?= htmlspecialchars($car['price']) ?> €</td>
-                <td class="py-3 px-6"><?= htmlspecialchars($car['description']) ?></td>
                 <td class="py-3 px-6 text-center">
                     <a href="/cars/edit/<?= $car['id'] ?>" class="text-blue-500 hover:text-blue-700 mr-4">
                         <i class="fas fa-edit"></i>
@@ -118,7 +116,9 @@
         const rows = document.querySelectorAll('#carsTable tbody tr');
         rows.forEach(row => {
             const yearCell = row.cells[3].textContent.toLowerCase();
-            row.style.display = yearCell.includes(filter) ? '' : 'none';
+            const modelCell = row.cells[2].textContent.toLowerCase(); // Get the model cell text
+            // Show the row if it matches either the year or the model
+            row.style.display = yearCell.includes(filter) || modelCell.includes(filter) ? '' : 'none';
         });
     });
 
@@ -133,7 +133,7 @@
                 return sortDirection
                     ? parseInt(aText) - parseInt(bText)
                     : parseInt(bText) - parseInt(aText);
-            } else if (colIndex === 1 || colIndex === 3 || colIndex === 4 || colIndex === 5) {
+            } else if (colIndex === 1 || colIndex === 2 || colIndex === 3 || colIndex === 4) {
                 return sortDirection
                     ? aText.localeCompare(bText)
                     : bText.localeCompare(aText);
