@@ -40,7 +40,7 @@
             </div>
         </div>
 
-        <form action="/store" method="POST">
+        <form action="/films/store" method="POST">
             <!-- Camp per al títol de la pel·lícula -->
             <div class="mb-4">
                 <label for="name" class="block text-white font-semibold">Títol:</label>

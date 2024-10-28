@@ -58,7 +58,7 @@
         </div>
     </div>
     <div class="top-left">
-        <a href="/create" class="glow-button px-6 py-3 rounded hover:bg-black hover-animate w-full">Afegir Nova Pel·lícula</a>
+        <a href="/films/create" class="glow-button px-6 py-3 rounded hover:bg-black hover-animate w-full">Afegir Nova Pel·lícula</a>
     </div>
     <div class="mt-4">
         <input type="text" id="search" placeholder="Cerca per any..." class="p-2 border border-gray-300 rounded w-full text-black" />
@@ -86,17 +86,17 @@
             <tr class="table-row border-b border-gray-200">
                 <td class="py-3 px-6"><?= htmlspecialchars($film['id']) ?></td>
                 <td class="py-3 px-6">
-                    <a href="/show/<?= $film['id'] ?>" class="text-blue-500 hover:text-blue-700">
+                    <a href="/films/show/<?= $film['id'] ?>" class="text-blue-500 hover:text-blue-700">
                             <?= htmlspecialchars($film['name']) ?>
                     </a> <!-- Enllaç al detall de la pel·lícula -->
                 </td>
                 <td class="py-3 px-6"><?= htmlspecialchars($film['director']) ?></td>
                 <td class="py-3 px-6"><?= htmlspecialchars($film['year']) ?></td>
                 <td class="py-3 px-6 text-center">
-                    <a href="/edit/<?= $film['id'] ?>" class="text-blue-500 hover:text-blue-700 mr-4">
+                    <a href="/films/edit/<?= $film['id'] ?>" class="text-blue-500 hover:text-blue-700 mr-4">
                         <i class="fas fa-edit"></i> <!-- Icona d'editar -->
                     </a>
-                    <a href="/delete/<?= $film['id'] ?>" class="text-red-500 hover:text-red-700">
+                    <a href="/films/delete/<?= $film['id'] ?>" class="text-red-500 hover:text-red-700">
                         <i class="fas fa-trash-alt"></i> <!-- Icona d'eliminar -->
                     </a>
                 </td>

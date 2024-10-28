@@ -40,7 +40,7 @@
             </div>
         </div>
 
-        <form action="/update" method="POST">
+        <form action="/films/update" method="POST">
             <input type="hidden" name="id" value="<?= htmlspecialchars($film['id']) ?>" class="mt-1 block w-full border border-gray-300 rounded-md p-2">
 
             <div class="mb-4">

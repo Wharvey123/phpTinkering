@@ -3,7 +3,7 @@
         <div class="nav-links space-x-4 lg:flex hidden justify-center flex-1">
             <a href="/" class="text-white uppercase text-lg font-semibold px-4 py-2 rounded-lg hover:bg-black {{ request()->is('/') ? 'font-bold' : '' }}" style="font-family: 'Abolition', sans-serif;">Inici</a>
             <a href="/films" class="text-white uppercase text-lg font-semibold px-4 py-2 rounded-lg hover:bg-black {{ request()->is('films') ? 'font-bold' : '' }}" style="font-family: 'Abolition', sans-serif;">Películes</a>
-            <a href="/games" class="text-white uppercase text-lg font-semibold px-4 py-2 rounded-lg hover:bg-black {{ request()->is('games') ? 'font-bold' : '' }}" style="font-family: 'Abolition', sans-serif;">Cotxes</a>
+            <a href="/cars" class="text-white uppercase text-lg font-semibold px-4 py-2 rounded-lg hover:bg-black {{ request()->is('cars') ? 'font-bold' : '' }}" style="font-family: 'Abolition', sans-serif;">Cotxes</a>
         </div>
         <div class="block lg:hidden flex justify-end flex-1 relative">
             <button id="menu-toggle" class="text-white focus:outline-none">
@@ -18,7 +18,7 @@
                 <div class="flex flex-col items-center">
                     <a href="/" class="block text-black uppercase text-lg font-semibold px-4 py-2 rounded-lg hover:bg-black {{ request()->is('/') ? 'font-bold' : '' }}" style="font-family: 'Abolition', sans-serif;">Inici</a>
                     <a href="/films" class="block text-black uppercase text-lg font-semibold px-4 py-2 rounded-lg hover:bg-black {{ request()->is('films') ? 'font-bold' : '' }}" style="font-family: 'Abolition', sans-serif;">Películes</a>
-                    <a href="/games" class="block text-black uppercase text-lg font-semibold px-4 py-2 rounded-lg hover:bg-black {{ request()->is('games') ? 'font-bold' : '' }}" style="font-family: 'Abolition', sans-serif;">Cotxes</a>
+                    <a href="/cars" class="block text-black uppercase text-lg font-semibold px-4 py-2 rounded-lg hover:bg-black {{ request()->is('cars') ? 'font-bold' : '' }}" style="font-family: 'Abolition', sans-serif;">Cotxes</a>
                 </div>
             </div>
         </div>

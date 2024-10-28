@@ -38,7 +38,7 @@
         <p class="text-lg text-black mb-6 text-center">Vols eliminar la pel·lícula "<strong><?= htmlspecialchars($film['name']) ?></strong>"?</p>
 
         <!-- Formulari per eliminar la pel·lícula -->
-        <form action="/destroy" method="POST" class="text-center">
+        <form action="/films/destroy" method="POST" class="text-center">
             <input type="hidden" name="id" value="<?= htmlspecialchars($film['id']) ?>">
             <button type="submit" class="bg-dark-red text-white px-6 py-3 rounded hover:bg-black hover-animate">Eliminar</button>
         </form>
