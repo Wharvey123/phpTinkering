@@ -111,8 +111,7 @@
 <?php require "../resources/views/layout/footer.blade.php"; ?>
 
 <script>
-    // Filtrar per any
-    const searchInput = document.getElementById('search');
+    const searchInput = document.getElementById('search');     // Filtrar per any
     searchInput.addEventListener('input', function () {
         const filter = searchInput.value.toLowerCase();
         const rows = document.querySelectorAll('#filmsTable tbody tr');
@@ -121,10 +120,8 @@
             row.style.display = yearCell.includes(filter) ? '' : 'none'; // Filtra la fila
         });
     });
-
-    // Ordenar la taula
-    let sortDirection = true; // True per ascendent, false per descendent
-    function sortTable(colIndex) {
+    let sortDirection = true;
+    function sortTable(colIndex) {     // Ordenar la taula
         const table = document.getElementById('filmsTable');
         const rows = Array.from(table.rows).slice(1); // Ignore the header
         rows.sort((a, b) => {
@@ -142,10 +139,8 @@
             }
             return 0; // Don't sort by other columns
         });
-        // Clear existing rows
         const tbody = table.querySelector('tbody');
         tbody.innerHTML = ''; // Clear existing rows
-        // Re-add sorted rows without changing font weight
         rows.forEach(row => {
             tbody.appendChild(row); // Re-add the row
         });

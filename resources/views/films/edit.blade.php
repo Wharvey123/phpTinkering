@@ -42,27 +42,22 @@
 
         <form action="/films/update/<?= htmlspecialchars($film['id']) ?>" method="POST">
             <input type="hidden" name="id" value="<?= htmlspecialchars($film['id']) ?>" class="mt-1 block w-full border border-gray-300 rounded-md p-2">
-
             <div class="mb-4">
                 <label for="name" class="block text-white font-semibold">Nom:</label>
                 <input type="text" name="name" value="<?= htmlspecialchars($film['name']) ?>" class="mt-1 block w-full border border-gray-300 rounded-md p-3 text-black" required>
             </div>
-
             <div class="mb-4">
                 <label for="director" class="block text-white font-semibold">Director:</label>
                 <input type="text" name="director" value="<?= htmlspecialchars($film['director']) ?>" class="mt-1 block w-full border border-gray-300 rounded-md p-3 text-black" required>
             </div>
-
             <div class="mb-4">
                 <label for="year" class="block text-white font-semibold">Any:</label>
                 <input type="number" name="year" value="<?= htmlspecialchars($film['year']) ?>" class="mt-1 block w-full border border-gray-300 rounded-md p-3 text-black" required>
             </div>
-
             <div class="mb-4">
                 <label for="description" class="block text-white font-semibold">Descripció:</label>
                 <input type="text" name="description" value="<?= htmlspecialchars($film['description']) ?>" class="mt-1 block w-full border border-gray-300 rounded-md p-3 text-black" required>
             </div>
-
             <div class="text-center">
                 <button type="submit" class="bg-dark-red text-white px-6 py-3 rounded hover:bg-black hover-animate w-full">Editar</button>
             </div>

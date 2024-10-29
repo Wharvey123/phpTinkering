@@ -39,32 +39,27 @@
                 <a href="/films" style="font-size: 36px;" class="text-dark-red hover:text-black"> <i class="fa">&#xf137;</i></a>
             </div>
         </div>
-
         <form action="/films/store" method="POST">
             <!-- Camp per al títol de la pel·lícula -->
             <div class="mb-4">
                 <label for="name" class="block text-white font-semibold">Títol:</label>
                 <input type="text" name="name" required class="mt-1 block w-full border border-gray-300 rounded-md p-3 text-black" placeholder="Escriu el títol de la pel·lícula">
             </div>
-
             <!-- Camp per al director de la pel·lícula -->
             <div class="mb-4">
                 <label for="director" class="block text-white font-semibold">Director:</label>
                 <input type="text" name="director" required class="mt-1 block w-full border border-gray-300 rounded-md p-3 text-black" placeholder="Escriu el nom del director">
             </div>
-
             <!-- Camp per a l'any de llançament de la pel·lícula -->
             <div class="mb-4">
                 <label for="year" class="block text-white font-semibold">Any de llançament:</label>
                 <input type="number" name="year" required class="mt-1 block w-full border border-gray-300 rounded-md p-3 text-black" placeholder="Escriu l'any de llançament">
             </div>
-
             <!-- Camp per a la descripció de la pel·lícula -->
             <div class="mb-4">
                 <label for="description" class="block text-white font-semibold">Descripció:</label>
                 <input type="text" name="description" required class="mt-1 block w-full border border-gray-300 rounded-md p-3 text-black" placeholder="Escriu una descripció breu (255 caràcters max)">
             </div>
-
             <!-- Botó per afegir la pel·lícula -->
             <div class="text-center">
                 <button type="submit" class="bg-dark-red text-white px-6 py-3 rounded hover:bg-black hover-animate w-full">Afegir Pel·lícula</button>

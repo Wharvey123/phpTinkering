@@ -105,10 +105,8 @@
     const movieTitle = "<?= $film['name'] ?>"; // PHP variable for movie title
     const movieYear = "<?= $film['year'] ?>";   // PHP variable for movie year
     const apiKey = "e897831c"; // Your OMDb API key
-
     // Construct the API URL
     const apiUrl = `http://www.omdbapi.com/?t=${encodeURIComponent(movieTitle)}&y=${movieYear}&apikey=${apiKey}`;
-
     // Fetch the movie poster
     fetch(apiUrl)
         .then(response => response.json())

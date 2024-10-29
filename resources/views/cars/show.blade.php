@@ -118,9 +118,7 @@
     const carMake = "<?= $car['make'] ?>";
     const carModel = "<?= $car['model'] ?>";
     const apiKey = "BZrzxWnJDomztVU6UQPQFbsjMb2btnIl9b_PpiPiWZs"; // Your Unsplash Access Key
-
     const apiUrl = `https://api.unsplash.com/search/photos?query=${encodeURIComponent(carMake + ' ' + carModel)}&client_id=${apiKey}`;
-
     fetch(apiUrl)
         .then(response => response.json())
         .then(data => {

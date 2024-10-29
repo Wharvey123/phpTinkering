@@ -41,32 +41,26 @@
 
         <form action="/cars/update/<?= htmlspecialchars($car['id']) ?>" method="POST">
             <input type="hidden" name="id" value="<?= htmlspecialchars($car['id']) ?>" class="mt-1 block w-full border border-gray-300 rounded-md p-2">
-
             <div class="mb-4">
                 <label for="make" class="block text-white font-semibold">Marca:</label>
                 <input type="text" name="make" value="<?= htmlspecialchars($car['make']) ?>" class="mt-1 block w-full border border-gray-300 rounded-md p-3 text-black" required>
             </div>
-
             <div class="mb-4">
                 <label for="model" class="block text-white font-semibold">Model:</label>
                 <input type="text" name="model" value="<?= htmlspecialchars($car['model']) ?>" class="mt-1 block w-full border border-gray-300 rounded-md p-3 text-black" required>
             </div>
-
             <div class="mb-4">
                 <label for="year" class="block text-white font-semibold">Any de fabricació:</label>
                 <input type="number" name="year" value="<?= htmlspecialchars($car['year']) ?>" class="mt-1 block w-full border border-gray-300 rounded-md p-3 text-black" required>
             </div>
-
             <div class="mb-4">
                 <label for="price" class="block text-white font-semibold">Preu (en euros):</label>
                 <input type="number" name="price" value="<?= htmlspecialchars($car['price']) ?>" class="mt-1 block w-full border border-gray-300 rounded-md p-3 text-black" required>
             </div>
-
             <div class="mb-4">
                 <label for="description" class="block text-white font-semibold">Descripció:</label>
                 <input type="text" name="description" value="<?= htmlspecialchars($car['description']) ?>" class="mt-1 block w-full border border-gray-300 rounded-md p-3 text-black" required>
             </div>
-
             <div class="text-center">
                 <button type="submit" class="bg-dark-red text-white px-6 py-3 rounded hover:bg-black hover-animate w-full">Editar</button>
             </div>

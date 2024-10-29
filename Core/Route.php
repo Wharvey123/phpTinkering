@@ -52,15 +52,15 @@ class Route
                 case 'create':
                     return $controllerInstance->create();
                 case 'store':
-                    return $controllerInstance->store($_POST); // Ensure POST request
+                    return $controllerInstance->store($_POST);
                 case 'edit':
                     return $controllerInstance->edit($parts[2] ?? null);
                 case 'update':
-                    return $controllerInstance->update($parts[2] ?? null, $_POST); // POST for data submission
+                    return $controllerInstance->update($parts[2] ?? null, $_POST);
                 case 'delete':
-                    return $controllerInstance->delete($parts[2] ?? null); // Direct delete view
+                    return $controllerInstance->delete($parts[2] ?? null);
                 case 'destroy':
-                    if ($_SERVER['REQUEST_METHOD'] === 'POST') { // POST for delete
+                    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         return $controllerInstance->destroy($_POST['id'] ?? null);
                     }
             }
@@ -79,21 +79,21 @@ class Route
                 case 'create':
                     return $controllerInstance->create();
                 case 'store':
-                    if ($_SERVER['REQUEST_METHOD'] === 'POST') { // POST for storing new data
+                    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         return $controllerInstance->store($_POST);
                     }
                     break;
                 case 'edit':
                     return $controllerInstance->edit($parts[2] ?? null);
                 case 'update':
-                    if ($_SERVER['REQUEST_METHOD'] === 'POST') { // POST for update
+                    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         return $controllerInstance->update($parts[2] ?? null, $_POST);
                     }
                     break;
                 case 'delete':
-                    return $controllerInstance->delete($parts[2] ?? null); // Direct delete view
+                    return $controllerInstance->delete($parts[2] ?? null);
                 case 'destroy':
-                    if ($_SERVER['REQUEST_METHOD'] === 'POST') { // POST for delete action
+                    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         return $controllerInstance->destroy($_POST['id'] ?? null);
                     }
                     break;

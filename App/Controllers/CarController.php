@@ -20,7 +20,7 @@ class CarController // Changed from FilmController to CarController
     {
         //si no ens passen la id fem redirect
         if ($id === null) {
-            header('location: /');
+            header('location: /cars');
             exit;
         }
         //busquem el cotxe
@@ -46,7 +46,7 @@ class CarController // Changed from FilmController to CarController
         //cridem funcio create del model
         Car::create($data); // Changed from Film to Car
         //retornar a la vista principal
-        header('location: /');
+        header('location: /cars');
         exit;
     }
 
@@ -55,7 +55,7 @@ class CarController // Changed from FilmController to CarController
     {
         //si no ens passen la id fem redirect
         if ($id === null) {
-            header('location: /');
+            header('location: /cars');
             exit;
         }
 
@@ -79,7 +79,7 @@ class CarController // Changed from FilmController to CarController
         Car::update($id, $data); // Changed from Film to Car
 
         //retonem a la pàgina principal
-        header('location: /');
+        header('location: /cars');
         exit;
     }
 
@@ -88,7 +88,7 @@ class CarController // Changed from FilmController to CarController
     {
         //si no ens passen la id fem redirect
         if ($id === null) {
-            header('location: /');
+            header('location: /cars');
             exit;
         }
 
@@ -106,6 +106,6 @@ class CarController // Changed from FilmController to CarController
         Car::delete($id); // Changed from Film to Car
 
         //retornar a la vista
-        header('location: /');
+        header('location: /cars');
     }
 }

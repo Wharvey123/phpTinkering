@@ -121,7 +121,6 @@
             row.style.display = yearCell.includes(filter) || modelCell.includes(filter) ? '' : 'none';
         });
     });
-
     let sortDirection = true;
     function sortTable(colIndex) {
         const table = document.getElementById('carsTable');

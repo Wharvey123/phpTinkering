@@ -45,31 +45,26 @@
                 <label for="make" class="block text-white font-semibold">Marca:</label>
                 <input type="text" name="make" required class="mt-1 block w-full border border-gray-300 rounded-md p-3 text-black" placeholder="Escriu la marca del cotxe">
             </div>
-
             <!-- Model del cotxe -->
             <div class="mb-4">
                 <label for="model" class="block text-white font-semibold">Model:</label>
                 <input type="text" name="model" required class="mt-1 block w-full border border-gray-300 rounded-md p-3 text-black" placeholder="Escriu el model del cotxe">
             </div>
-
             <!-- Any del cotxe -->
             <div class="mb-4">
                 <label for="year" class="block text-white font-semibold">Any de fabricació:</label>
                 <input type="number" name="year" required class="mt-1 block w-full border border-gray-300 rounded-md p-3 text-black" placeholder="Escriu l'any de fabricació">
             </div>
-
             <!-- Preu del cotxe -->
             <div class="mb-4">
                 <label for="price" class="block text-white font-semibold">Preu:</label>
                 <input type="number" name="price" required class="mt-1 block w-full border border-gray-300 rounded-md p-3 text-black" placeholder="Escriu el preu (en euros)">
             </div>
-
             <!-- Descripció del cotxe -->
             <div class="mb-4">
                 <label for="description" class="block text-white font-semibold">Descripció:</label>
                 <input type="text" name="description" required class="mt-1 block w-full border border-gray-300 rounded-md p-3 text-black" placeholder="Escriu una descripció breu (255 caràcters max)">
             </div>
-
             <!-- Botó per afegir el cotxe -->
             <div class="text-center">
                 <button type="submit" class="bg-dark-red text-white px-6 py-3 rounded hover:bg-black hover-animate w-full">Afegir Cotxe</button>
